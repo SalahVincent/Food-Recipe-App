@@ -3,9 +3,9 @@ import React from 'react'
 const Navbar = () => {
   return (
     <>
-    <div className='navbar flex flex-wrap items-center justify-items-center justify-between px-5 py-3'>
+    <div className='navbar flex flex-wrap items-center justify-between px-10 py-3 '>
         <label>
-            <h1>Cook<span className='navbar-span'>er</span></h1>
+            <h1 className='font-bold text-[#e63946] text-[2.5rem]'>Cook<span className='navbar-span'>er</span></h1>
         </label>
         <nav>
             <ul className='flex flex-row gap-3'>
