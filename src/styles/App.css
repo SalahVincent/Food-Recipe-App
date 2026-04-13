@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+
+body {
+  font-family: Inter, sans-serif;
+  background-color: #f3f2f2;
+}
+
+h1 {
+  font-family: Noto Serif, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e63946;
+}
+
+h2 {
+  font-family: Noto Serif, sans-serif;
+  font-weight: semi-bold;
+  font-size: 3.5rem;
+}
