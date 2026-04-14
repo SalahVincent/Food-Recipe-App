@@ -5,7 +5,7 @@ const Navbar = () => {
     <>
     <div className='navbar flex flex-wrap items-center justify-between px-10 py-3 '>
         <label>
-            <h1 className='font-bold text-[#e63946] text-[2.5rem]'>Cook<span className='navbar-span'>er</span></h1>
+            <h1 className='font-bold text-[#e63946] text-[2.5rem]'>Cook<span className='navbar-span'>er</span><sub>CMR</sub></h1>
         </label>
         <nav>
             <ul className='flex flex-row gap-3'>
@@ -14,7 +14,7 @@ const Navbar = () => {
             </ul>
         </nav>
         <form action="submit" className='bg-[#00000013] flex items-center gap-2 px-3 py-1.5 rounded-2xl'>
-            <img src="./search.svg" alt="search icon" />
+            <img src="./search.svg" alt="search icon" className='cursor-pointer' />
             <input type="text" placeholder="Search recipes..." />
         </form>
     </div>
