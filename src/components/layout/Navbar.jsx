@@ -5,7 +5,7 @@ const Navbar = () => {
     <>
     <div className='navbar flex flex-wrap items-center justify-between px-10 py-3 '>
         <label>
-            <h1 className='font-bold text-[#e63946] text-[2.5rem]'>Cook<span className='navbar-span'>er</span><sub>CMR</sub></h1>
+            <h1 className='font-bold text-[#e63946] text-[2.5rem]'>Cook<span className='navbar-span'>er</span><sub className='font-[Inter] text-[20px]'>CMR</sub></h1>
         </label>
         <nav>
             <ul className='flex flex-row gap-3'>

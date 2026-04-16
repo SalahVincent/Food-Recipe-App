@@ -6,7 +6,6 @@ import Navbar from './components/layout/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import RecipeForm from './pages/RecipeForm'
 import Footer from './components/layout/Footer'
-import RecipeDetail from './pages/RecipeDetail'
 
 const App = () => {
 
@@ -18,7 +17,6 @@ const App = () => {
               <Route path='/' element={<Dashboard />} />
               <Route path='/favorites' element={<Favorites />} />
               <Route path='/add' element={<RecipeForm />} /> 
-              <Route path='/detail' element={<RecipeDetail />} /> 
           </Routes>
         <Footer />
       </BrowserRouter>
