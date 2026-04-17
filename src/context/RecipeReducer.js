@@ -26,7 +26,7 @@ export const recipeReducer = (state, action) => {
                 ...state,
                 searchQuery: action.payload
             }
-        case 'SET_SELECTED_RECIPE':
+        case 'SET_SELECTED':
             return {
                 ...state,
                 selectedRecipe: action.payload

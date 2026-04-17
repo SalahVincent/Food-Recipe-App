@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="px-10 py-3 mt-8 flex flex-row items-center justify-between">
+      <div className="px-10 py-3 mt-8 flex flex-row flex-wrap items-center justify-between">
         <div className="cursor-default">
           <h2 className="font-bold text-[3.5rem]">Your Kitchen</h2>
           <p className="text-lg text-gray-600">
@@ -32,9 +32,11 @@ const Dashboard = () => {
           state.recipes.map((recipe) => (
             <div
               key={recipe.id}
-              className="bg-white p-4 rounded-3xl"
-              onClick={() =>
+              className="bg-white p-4 rounded-3xl cursor-pointer"
+              onClick={() => {
+                console.log("Card clicked:", recipe.name);
                 dispatch({ type: "SET_SELECTED", payload: recipe })
+              }
               }
             >
               <img

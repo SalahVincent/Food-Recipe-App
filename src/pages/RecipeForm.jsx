@@ -37,7 +37,7 @@ const RecipeForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     imageLink: '',
-    ingredients: [],
+    ingredients: [""],
     instructions: '',
     prepTime: '',
     servings: '',
