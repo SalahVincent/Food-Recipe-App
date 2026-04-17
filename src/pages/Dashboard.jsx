@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import Button from "../components/ui/Button";
+import { Link, useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(RecipeContext);
   const recipes = state.recipes;
+  const navigate = useNavigate();
 
   console.log('Recipes in Dashboard:', recipes);
 
@@ -17,12 +19,13 @@ const Dashboard = () => {
             Curate, curate and plate your culnary adventures
           </p>
         </div>
-        <a href="/add">
+        <Link to="/add" 
+  onClick={() => dispatch({ type: 'SET_SELECTED', payload: null })}>
           <Button className="px-6">
             <img src="./plus.svg" alt="" />
             Add Recipe
           </Button>
-        </a>
+        </Link>
       </div>
 
       <div className="flex flex-wrap gap-6 justify-center mt-10">

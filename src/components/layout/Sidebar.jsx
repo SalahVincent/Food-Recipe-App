@@ -1,10 +1,17 @@
 import React, { useContext } from 'react'
 import { RecipeContext } from '../../context/RecipeContext'
 import Button from '../ui/Button'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+  const navigate = useNavigate()
   const { state, dispatch } = useContext(RecipeContext);
   const recipe = state.selectedRecipe;
+
+  const handleEdit = () => {
+    console.log("Button Clicked, Navigating to Edit Form with Recipe:", recipe);
+    navigate('/add')
+  }
 
   const closeSidebar = () => {
     dispatch({ type: 'SET_SELECTED', payload: null })
@@ -59,7 +66,9 @@ const Sidebar = () => {
           </div>
 
           <div className='mt-auto pt-10 flex gap-4'>
-            <Button className='flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors'>Edit Recipe</Button>
+            <Button
+            onClick={handleEdit}
+            className='flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors'>Edit Recipe</Button>
             <button
             className='px-4 py-2 border border-red-200 text-red-500 rounded-xl hover:bg-red-50'
             onClick={() => {dispatch({ type: 'DELETE_RECIPE', payload: recipe.id })

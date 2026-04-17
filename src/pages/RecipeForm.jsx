@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { RecipeContext } from '../context/RecipeContext.jsx'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import '../styles/App.css'
 
@@ -31,7 +31,7 @@ const FileInput = ({ label, id, name }) => {
 }
 
 const RecipeForm = () => {
-  const { dispatch } = useContext(RecipeContext);
+  const { state, dispatch } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -62,26 +62,31 @@ const RecipeForm = () => {
     }));
   }
 
+    useEffect(() => {
+      if (state.selectedRecipe) {
+        setFormData(state.selectedRecipe)
+      }
+    }, [state.selectedRecipe])
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newRecipe = {
-      ...formData,
-      id: Date.now().toString(),
-    };
+    
+    if (state.selectedRecipe) {
+      dispatch({ type: 'UPDATE_RECIPE', payload: { ...formData, id: state.selectedRecipe.id } })
+    } else {
+      dispatch({ type: 'ADD_RECIPE', payload: { ...formData, id: Date.now() } })
+    }
 
-    console.log('Savincg Recipe...', newRecipe);
-
-    dispatch({ type: 'ADD_RECIPE', payload: newRecipe });
+    dispatch({ type: 'SET_SELECTED', payload: null })
     navigate('/');
   };
-
 
   return (
     <>
     <div className='px-10 py-3 mt-25 '>
     <div className='flex gap-10 flex-wrap justify-between'>
         <div className='flex flex-col items-start justify-between cursor-default w-[55%]'>
-        <h3 className='text-[3.5rem] w-[50%] leading-17 py-1.5'>Compose <em className='text-[#e93646]'>Your Recipe</em></h3>
+        <h3 className='text-[3.5rem] w-[50%] leading-17 py-1.5'>{state.selectedRecipe ? 'Edit' : 'Compose'} <em className='text-[#e93646]'>Your Recipe</em></h3>
             <p className=' text-gray-600 mt-5'>Transform your culinary ideas into your digital collection. Detail the flavors and techniques that make your dish unique.</p>
         </div>
         <div className='flex flex-col items-end w-[40%] justify-end'>
