@@ -22,16 +22,23 @@ const Input = ({ label, type, id, name, placeholder, value, change, required }) 
   );
 };
 
-const FileInput = ({ label, id, name }) => {
+const FileInput = ({ label, id, name, onFileSelect }) => {
   return (
     <div className="flex flex-col gap-1 py-3.5">
-      <label htmlFor={id} className="">
+      <label htmlFor={id} className="cursor-pointer">
         <span className="block mb-1">{label}</span>
-        <div className="bg-[#00000013] border-2 border-dashed border-gray-300 h-70 flex items-center justify-center hover:bg-[#0000001a] transition-all cursor-pointer">
+        <div className="bg-[#00000013] border-2 border-dashed border-gray-300 h-10 flex items-center justify-center hover:bg-[#0000001a] transition-all">
           <p className="text-gray-500 text-sm">Click to upload cover image</p>
         </div>
       </label>
-      <input className="hidden" type="file" id={id} name={name} />
+      <input 
+        className="hidden" 
+        type="file" 
+        id={id} 
+        name={name} 
+        accept="image/*"
+        onChange={(e) => onFileSelect(e.target.files[0])} 
+      />
     </div>
   );
 };
@@ -96,6 +103,17 @@ const RecipeForm = () => {
       setFormData(state.selectedRecipe);
     }
   }, [state.selectedRecipe]);
+
+  const handleFileChange = (file) => {
+    if (file) {
+      const tempUrl = URL.createObjectURL(file)
+
+      setFormData((prev) => ({
+        ...prev,
+        imageLink: tempUrl
+      }))
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -165,7 +183,20 @@ const RecipeForm = () => {
                 change={handleChange}
                 required
               />
-              <FileInput label="RECIPE COVER IMAGE" id="image" name="image" />
+             <FileInput 
+                label="RECIPE COVER IMAGE" 
+                id="image" 
+                name="image" 
+                onFileSelect={handleFileChange}
+              />
+              <div>
+                <p className="text-xs text-gray-400 mb-2 font-bold">IMAGE PREVIEW</p>
+                <img
+                  className="w-full h-60 rounded-3xl object-cover border-2 border-dashed border-gray-200"
+                  src={formData.imageLink || "./cover-template.jpg"}
+                  alt="Recipe preview"
+                />
+              </div>
               <Input
                 id="imageLink"
                 name="imageLink"
@@ -245,6 +276,7 @@ const RecipeForm = () => {
                   <div className="flex">
                     <input
                       type="number"
+                      name="prepTime"
                       placeholder="--"
                       value={formData.prepTime}
                       onChange={handleChange}
@@ -258,6 +290,7 @@ const RecipeForm = () => {
                   <div>
                     <input
                       type="number"
+                      name="servings"
                       placeholder="--"
                       value={formData.servings}
                       onChange={handleChange}

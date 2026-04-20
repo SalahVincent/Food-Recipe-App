@@ -39,14 +39,14 @@ const Sidebar = () => {
           alt={recipe.name}
           className='w-full h-full object-cover rounded-3xl mb-6'
           />
-          <h2 className='text-3xl font-bold mb-4'>{recipe.name}</h2>
+          <h2 className='text-3xl mb-4'>{recipe.name}</h2>
           <div className='flex gap-4 mb-8'>
-            <span className='bg-red-400 text-white py-2 px-4 rounded-full'>Preparation Time: {recipe.prepTime} mins</span>
-            <span className='bg-gray-300 text-white py-2 px-4 rounded-full'>Servings: {recipe.servings} people </span>
+            <span className='bg-red-400 text-white py-2 px-4 rounded-full text-[15px]'>{recipe.prepTime} mins</span>
+            <span className='bg-gray-300 text-white py-2 px-4 rounded-full'>{recipe.servings} people </span>
           </div>
 
           <div className="mb-6">
-  <h4 className="font-bold text-red-500 uppercase text-sm mb-2">Ingredients</h4>
+  <h4 className="font-bold text-green-600 uppercase text-sm mb-2 flex gap-2"><img src="./egg.svg" alt="" />Ingredients</h4>
   <ul className="list-disc pl-5 space-y-1">
     {recipe.ingredients && recipe.ingredients.length > 0 ? (
       recipe.ingredients

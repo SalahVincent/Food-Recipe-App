@@ -21,7 +21,7 @@ export const recipeReducer = (state, action) => {
                 ...state,
                 recipes: state.recipes.map(recipe => recipe.id === action.payload.id ? action.payload : recipe)
             }
-        case 'SET_SEARCH_QUERY':
+        case 'SET_SEARCH':
             return {
                 ...state,
                 searchQuery: action.payload

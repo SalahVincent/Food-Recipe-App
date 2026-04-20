@@ -8,9 +8,11 @@ const Dashboard = () => {
   const recipes = state.recipes;
   const navigate = useNavigate();
 
-  const sorted = [...state.recipes].sort((a, b) => b.id - a.id);
-  const latest = sorted[0];
-  const others = sorted.slice(1);
+  const filteredRecipes = state.recipes.filter(recipe =>
+    recipe.name.toLowerCase().includes(state.searchQuery.toLowerCase())
+  )
+
+  const sortedRecipes = [...filteredRecipes].sort((a,b) => b.id - a.id)
 
   console.log("Recipes in Dashboard:", recipes);
 
@@ -35,15 +37,23 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-10 px-10">
-        {state.recipes.length === 0 ? (
-          <p className="text-gray-400 text-center">
-            No recipes yet. Start cooking!
-          </p>
-        ) : (
+  {sortedRecipes.length === 0 ? (
+    <div className="flex flex-col items-center justify-center py-20">
+      <p className="text-gray-400 text-xl">No recipes found matching <span className="text-blue-500">{state.searchQuery}</span></p>
+      <button 
+        onClick={() => dispatch({ type: 'SET_SEARCH', payload: '' })}
+        className="text-[#e63946] mt-2 underline cursor-pointer"
+      >
+        <img
+        className="h-15"
+        src="./clear.svg" alt="Clear Search" />
+      </button>
+    </div>
+  ) : (
           <div className="flex flex-col gap-10">
             {(() => {
               const sorted = [...state.recipes].sort((a, b) => b.id - a.id);
-              const latest = sorted[0];
+              const latest = sortedRecipes[0];
               const others = sorted.slice(1);
 
               return (
@@ -101,7 +111,7 @@ const Dashboard = () => {
                     {others.map((recipe) => (
                       <div
                         key={recipe.id}
-                        className="bg-white rounded-3xl cursor-pointer w-80 shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-white rounded-3xl cursor-pointer w-74 shadow-sm hover:shadow-md transition-shadow"
                         onClick={() =>
                           dispatch({ type: "SET_SELECTED", payload: recipe })
                         }
@@ -111,7 +121,7 @@ const Dashboard = () => {
                           src={recipe.imageLink || "./cover-template.jpg"}
                           alt={recipe.name}
                         />
-                        <h3 className="text-xl font-semibold mt-3 px-4">
+                        <h3 className="text-xl font-semibold mt-3 px-4 truncate">
                           {recipe.name}
                         </h3>
                         <p className="text-gray-600 px-4">
