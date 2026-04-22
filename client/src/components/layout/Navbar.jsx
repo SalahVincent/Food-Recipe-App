@@ -23,7 +23,8 @@ const Navbar = () => {
               <a href="/">Dashboard</a>
             </li>
             <li>
-              <a href="/favorites">Favorites</a>
+              <div
+              onClick={() => navigate('/favorites')}>Favorites</div>
             </li>
           </ul>
         </nav>
