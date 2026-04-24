@@ -23,8 +23,9 @@ const Navbar = () => {
               <a href="/">Dashboard</a>
             </li>
             <li>
-              <div
-              onClick={() => navigate('/favorites')}>Favorites</div>
+              <a
+              className='cursor-pointer'
+              onClick={() => navigate('/favorites')}>Favorites</a>
             </li>
           </ul>
         </nav>

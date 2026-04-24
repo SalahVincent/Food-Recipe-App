@@ -62,7 +62,7 @@ const Sidebar = () => {
 
           <div className='mb-8'>
             <h3 className='text-2xl font-semibold mb-2'>Instructions</h3>
-            <p className='text-lg whitespace-pre-line'>{recipe.instructions}</p>
+            <p className='whitespace-pre-line'>{recipe.instructions}</p>
           </div>
 
           <div className='mt-auto pt-10 flex gap-4'>

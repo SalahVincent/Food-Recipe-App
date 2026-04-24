@@ -111,13 +111,13 @@ const Dashboard = () => {
                     {others.map((recipe) => (
                       <div
                         key={recipe.id}
-                        className="bg-white rounded-3xl cursor-pointer w-74 shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-white rounded-3xl cursor-pointer w-74 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
                         onClick={() =>
                           dispatch({ type: "SET_SELECTED", payload: recipe })
                         }
                       >
                         <img
-                          className="rounded-t-2xl w-full h-48 object-cover"
+                          className="rounded-t-2xl w-full h-48 object-cover hover:scale-105 inset-0 transition-transform duration-500"
                           src={recipe.imageLink || "./cover-template.jpg"}
                           alt={recipe.name}
                         />

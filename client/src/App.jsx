@@ -7,12 +7,14 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import RecipeForm from './pages/RecipeForm'
 import Footer from './components/layout/Footer'
 import Sidebar from './components/layout/Sidebar'
+import LandingPage from './pages/LandingPage'
 
 const App = () => {
   const location = useLocation()
 
   return (
     <>
+    <LandingPage/>
         <Navbar />
         {location.pathname === '/' && <Sidebar />}
           <Routes>
