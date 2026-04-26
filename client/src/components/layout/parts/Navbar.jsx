@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
-import { RecipeContext } from "../../context/RecipeContext";
+import { RecipeContext } from "../../../context/RecipeContext";
 import { useNavigate } from "react-router";
 
 const Navbar = () => {
-
-    const {state, dispatch} = useContext(RecipeContext)
-    const navigate = useNavigate()
+  const { state, dispatch } = useContext(RecipeContext);
+  const navigate = useNavigate();
 
   return (
     <>
-      <div className="navbar flex flex-wrap items-center justify-between px-10 py-3 ">
+      <div className="navbar flex flex-wrap items-center justify-between px-10 py-3 sticky top-0 backdrop-blur-[15px] z-30">
         <label>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
@@ -24,15 +23,16 @@ const Navbar = () => {
             </li>
             <li>
               <a
-              className='cursor-pointer'
-              onClick={() => navigate('/favorites')}>Favorites</a>
+                className="cursor-pointer"
+                onClick={() => navigate("/favorites")}
+              >
+                Favorites
+              </a>
             </li>
           </ul>
         </nav>
 
-        <div
-          className="bg-[#00000013] flex items-center gap-2 px-3 py-1.5 rounded-2xl"
-        >
+        <div className="bg-[#00000013] flex items-center gap-2 px-3 py-1.5 rounded-2xl">
           <img
             src="./search.svg"
             alt="search icon"
@@ -43,7 +43,9 @@ const Navbar = () => {
             placeholder="Search recipes..."
             className="bg-transparent outline-none"
             value={state.searchQuery}
-            onChange={(e) => dispatch({type: 'SET_SEARCH', payload: e.target.value})}
+            onChange={(e) =>
+              dispatch({ type: "SET_SEARCH", payload: e.target.value })
+            }
           />
         </div>
       </div>
