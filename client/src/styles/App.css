@@ -2,7 +2,27 @@
 
 body {
   font-family: Inter, sans-serif;
-  background-color: #f3f2f2;
+  background-color: #fff;
+}
+
+.bd {
+  background-color: none;
+}
+
+.welcome {
+  background: linear-gradient(#00000073), url("./get_started_bg.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-position: 0%;
+}
+
+.quote {
+  background: #ffffff25;
+  backdrop-filter: blur(5px)
+}
+
+.quote em {
+  font-family: Noto Serif, sans-serif;  
 }
 
 h1, h2, h3, .quick-details {
@@ -18,6 +38,35 @@ h1, h2, h3, .quick-details {
   width: 58%;
 }
 
+nav li {
+  cursor: pointer;
+}
+
 nav li:hover {
   color: #e93646;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-animation {
+  animation: slideIn 0.9s ease-out forwards;
+}
+
+.main-content {
+  
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
 }

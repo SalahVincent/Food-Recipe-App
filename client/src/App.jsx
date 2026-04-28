@@ -29,7 +29,7 @@ const App = () => {
 
       <Route element={<AppLayout/>}>
         <Route path="/feed" element={<Feed/>} />
-        <Route path="/add-recipe" element={<RecipeForm/>} />
+        <Route path="/add" element={<RecipeForm/>} />
         <Route path="/favorites" element={<Favorites/>} />
         <Route path="/notifications" element={<NotificationsPage/>} />
         <Route path="/dashboard" element={<Dashboard/>} />

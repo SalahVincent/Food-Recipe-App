@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar flex flex-wrap items-center justify-between px-10 py-3 sticky top-0 backdrop-blur-[15px] z-30">
+      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky top-0 bg-[#ffffff6e] backdrop-blur-[8px] z-30">
         <label>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
@@ -18,21 +18,16 @@ const Navbar = () => {
 
         <nav>
           <ul className="flex flex-row gap-3">
+            
             <li>
-              <a href="/">Dashboard</a>
+              <a className="flex items-center"><img className="h-8" src="./dashboard.svg" alt="" /></a>
             </li>
-            <li>
-              <a
-                className="cursor-pointer"
-                onClick={() => navigate("/favorites")}
-              >
-                Favorites
-              </a>
-            </li>
+            
           </ul>
         </nav>
 
-        <div className="bg-[#00000013] flex items-center gap-2 px-3 py-1.5 rounded-2xl">
+<div className='flex items-center gap-2 px-3 py-1.5 rounded-2xl'>
+  <div className="bg-[#00000013] flex items-center gap-2 px-3 py-1.5 rounded-2xl">
           <img
             src="./search.svg"
             alt="search icon"
@@ -40,7 +35,6 @@ const Navbar = () => {
           />
           <input
             type="text"
-            placeholder="Search recipes..."
             className="bg-transparent outline-none"
             value={state.searchQuery}
             onChange={(e) =>
@@ -48,6 +42,13 @@ const Navbar = () => {
             }
           />
         </div>
+        <div className="flex h-8 justify-around w-[120px]">
+          
+          <img src="./notifications.svg" alt="" />
+          <img src='./account.svg'/>
+        </div>
+        </div>
+        
       </div>
     </>
   );

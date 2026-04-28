@@ -6,8 +6,8 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 bg-white sticky top-0">
+    <div className="bg-white">
+      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky backdrop-blur-[8px] top-0">
         <label>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
@@ -28,7 +28,8 @@ const LandingPage = () => {
             </li>
           </ul>
         </nav>
-        <Button>SIGN IN</Button>
+        <Button
+        onClick={() => {navigate('/login')}}>SIGN IN</Button>
       </div>
 
       <div className="bg-white px-20 py-25">
@@ -39,7 +40,8 @@ const LandingPage = () => {
           </h1>
           <p className="my-5">A curated culinary sanctuary for the refined palate. Share your signature creations and discover a global gallery of masterfully plated recipes from a community of discerning chefs</p>
           <div className="flex gap-4">
-            <Button>Join the Circle</Button>
+            <Button
+        onClick={() => {navigate('/signup')}}>Join the Circle</Button>
           <button
     className='bg-[#f3f2f2] text-[#e63946] py-3 px-12 rounded-md flex gap-2 cursor-pointer'>
       Explore
@@ -68,15 +70,23 @@ const LandingPage = () => {
         </div>
       </div>
       <div className="bg-[#faf7f7] p-20">
-        <div>
-          <h2 className="flex flex-col text-4xl">
+        <div className="w-[50%]">
+          <h2 className="flex flex-col text-5xl">
             <em>Earning Your Stars in the</em>
-            <span className="font-bold text-[#e63946]">Kitchen Arena</span>
+            <span className="font-bold text-[#e63946]">Kitchen Arena.</span>
           </h2>
-          <p>Our star-based system isn't just about popularity. It's a validation of craft. As a community members "star" your recipes, you rise through the ranks from an amateur to a master chef, unlocking exclusive editorial features and platform prestige.</p>
+          <p className="py-[25px]">Our star-based system isn't just about popularity. It's a validation of craft. As a community members "star" your recipes, you rise through the ranks from an amateur to a master chef, unlocking exclusive editorial features and platform prestige.</p>
         </div>
       </div>
-    </>
+      <div className='flex justify-center flex-col items-center text-center p-20'>
+        <img className="w-[40px]" src="./fork_spoon.svg" alt="" />
+        <h1 className="text-7xl">Plated to <em className="text-[#e63946]">Perfection.</em></h1>
+        <p className="w-[60%] py-10">The table is set. All that's missing is your perspective. Join Cameroon's most sophisticated digital culinary circle today</p>
+        <div>
+          <Button>Start Your Culinary Journey</Button>
+        </div>
+      </div>
+    </div>
   );
 };
 
