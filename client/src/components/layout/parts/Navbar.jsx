@@ -20,7 +20,8 @@ const Navbar = () => {
           <ul className="flex flex-row gap-3">
             
             <li>
-              <a className="flex items-center"><img className="h-8" src="./dashboard.svg" alt="" /></a>
+              <a
+              onClick={() => {navigate("/feed")}}className="flex items-center"><img className="h-8" src="./dashboard.svg" alt="" />Feed</a>
             </li>
             
           </ul>
@@ -35,17 +36,22 @@ const Navbar = () => {
           />
           <input
             type="text"
-            className="bg-transparent outline-none"
+            className="w-17.5"
             value={state.searchQuery}
             onChange={(e) =>
               dispatch({ type: "SET_SEARCH", payload: e.target.value })
             }
           />
         </div>
-        <div className="flex h-8 justify-around w-[120px]">
+        <div className="flex h-8 justify-around w-30">
           
-          <img src="./notifications.svg" alt="" />
-          <img src='./account.svg'/>
+          <img
+          src="./notifications.svg" alt="" 
+          onClick={() => navigate('/notifications')}/>
+          
+          <img
+          src='./account.svg'
+          onClick={() => navigate('/profile')}/>
         </div>
         </div>
         

@@ -140,7 +140,7 @@ const RecipeForm = () => {
     }
 
     dispatch({ type: "SET_SELECTED", payload: null });
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (
@@ -304,7 +304,7 @@ const RecipeForm = () => {
             <div>
               <button
                 type="button"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/dashboard")}
                 className="text-gray-500 border-2 border-gray-300 px-4 py-1.5 rounded hover:bg-[#00000013] transition-all"
               >
                 Discard Draft
