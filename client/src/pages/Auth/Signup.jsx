@@ -81,11 +81,11 @@ const Signup = () => {
                 </div>
             <form className='bg-white rounded-[20px] p-10 leading-10 flex flex-col'>
             <label htmlFor="">USER NAME</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm" type="text" placeholder='e.g Vincent' />
+            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type="text" placeholder='e.g Vincent' />
             <label htmlFor="">EMAIL</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm" type='email' placeholder='Bamenda, North West' />
+            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type='email' placeholder='Bamenda, North West' />
             <label htmlFor="">PASSWORD</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm" type='password' placeholder='chef1234'/>
+            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type='password' placeholder='chef1234'/>
 
             <div className="flex justify-center mt-8">
             <Button

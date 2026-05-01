@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../components/ui/Button'
 
 const Feed = () => {
     const FollowSuggestions = ({name}) => {
@@ -46,7 +47,7 @@ const Feed = () => {
         </div>
 
         <div></div>
-        <div className='w-full overflow-hidden rounded-[15px] relative group cursor-pointer'>
+        <div className='w-full overflow-hidden rounded-[15px] relative group cursor-pointer my-4'>
             <img
     className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
     src="./dummy_bg.jpg" 
@@ -96,6 +97,34 @@ const Feed = () => {
                       </div>
                     </div>
         </div>
+
+        <div className='w-full rounded-[15px] relative group flex bg-[#00000013] px-9 py-7 gap-5'>
+          <div className='w-[50%]'>
+            <a href='' className='flex h-13 items-center gap-2 mb-3'>
+              <img className='h-full'
+              src='./account.svg'/>
+              <h1 className='text-xl'>Yongha Fanoel</h1>
+            </a>
+            <h2 className='text-3xl font-semibold'>Garri and Omelets</h2>
+            <p className='py-3'>Fried cassava grains soaked in water with peanuts and sugar</p>
+            
+            <div className='flex gap-6'>
+              <div className='flex items-center justify-center'>
+              <img src="./bookmark.svg" alt="" />
+              <span>1.2K</span>
+            </div>
+            <Button className='flex-row'>View Recipe</Button>
+            </div>
+            
+          </div>
+
+          <div className='w-[50%] flex items-center justify-center'>
+            <img
+            className='rounded-[25px] w-full rotate-3'
+            src="./dummy_post1.webp" alt="" />
+          </div>
+        </div>
+
     </div>
 
     <div className='w-[20%]'>
