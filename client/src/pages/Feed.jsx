@@ -39,12 +39,12 @@ const Feed = () => {
 
     <div className="rounded-xl w-[51.5%]">
         <h1 className='text-5xl py-3'>Your Culinary Feed</h1>
-        <div className='sticky top-25'>
+        <nav className=''>
             <ul className='flex gap-3 py-2 z-20'>
                 <li>Popular</li>
                 <li>Recent</li>
             </ul>
-        </div>
+        </nav>
 
         <div></div>
         <div className='w-full overflow-hidden rounded-[15px] relative group cursor-pointer my-4'>
@@ -111,7 +111,7 @@ const Feed = () => {
             <div className='flex gap-6'>
               <div className='flex items-center justify-center'>
               <img src="./bookmark.svg" alt="" />
-              <span>1.2K</span>
+              <span className='font-[Noto-serif]'>1.2K</span>
             </div>
             <Button className='flex-row'>View Recipe</Button>
             </div>
@@ -119,11 +119,51 @@ const Feed = () => {
           </div>
 
           <div className='w-[50%] flex items-center justify-center'>
+            <div className="absolute top-6 right-6 z-10 flex flex-col items-end group/rating">
+    
+    <button className="p-3 rounded-full bg-black/10 backdrop-blur-md hover:bg-black/40 transition-colors border border-white/30">
+      <img src="./star.svg" className='w-5 h-5' alt="star" />
+    </button>
+
+    <div className="mt-2 flex gap-1 p-2 rounded-xl bg-white/20 backdrop-blur-lg border border-white/30 
+                    opacity-0 -translate-y-2.5 pointer-events-none 
+                    group-hover/rating:opacity-100 group-hover/rating:translate-y-0 group-hover/rating:pointer-events-auto 
+                    transition-all duration-300 shadow-xl">
+      {[1, 2, 3, 4, 5].map((num) => (
+        <button key={num} className="hover:scale-125 transition-transform">
+          <img src="./star.svg" className='w-4 h-4' alt={`rate-${num}`} />
+        </button>
+      ))}
+    </div>
+    
+  </div>
             <img
             className='rounded-[25px] w-full rotate-3'
             src="./dummy_post1.webp" alt="" />
           </div>
         </div>
+
+        <div className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-xl shadow-lg group my-4">
+      <video 
+        controls 
+        className="w-full h-auto block"
+        src=""
+      >
+        Your browser does not support the video tag.
+      </video>
+      <div className="absolute inset-0 flex flex-col justify-start p-6 pointer-events-none">
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-transparent h-1/3" />
+
+        <div className="relative z-10">
+          <h2 className="text-white text-2xl font-bold tracking-tight drop-shadow-md">
+            Post Title Goes Here
+          </h2>
+          <p className="text-gray-200 text-sm mt-1 drop-shadow-sm">
+            @username • 2 hours ago
+          </p>
+        </div>
+      </div>
+    </div>
 
     </div>
 
