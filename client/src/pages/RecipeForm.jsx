@@ -44,7 +44,7 @@ const FileInput = ({ label, id, name, onFileSelect }) => {
 };
 
 const RecipeForm = () => {
-  const { state, dispatch } = useContext(RecipeContext);
+  const { state, dispatch, addRecipeToDB, deleteRecipeFromDB, updateRecipeInDB } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -99,48 +99,64 @@ const RecipeForm = () => {
   };
 
   useEffect(() => {
-    if (state.selectedRecipe) {
-      setFormData(state.selectedRecipe);
-    }
-  }, [state.selectedRecipe]);
+    
+  if (state.selectedRecipe && formData.name === "") {
+    setFormData({
+      ...state.selectedRecipe,
+
+      ingredients: typeof state.selectedRecipe.ingredients === 'string' 
+        ? JSON.parse(state.selectedRecipe.ingredients) 
+        : state.selectedRecipe.ingredients || [""]
+    });
+  }
+}, [state.selectedRecipe]);
 
   const handleFileChange = (file) => {
-    if (file) {
-      const tempUrl = URL.createObjectURL(file)
-
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
       setFormData((prev) => ({
         ...prev,
-        imageLink: tempUrl
-      }))
-    }
+        imageLink: reader.result
+      }));
+    };
+    reader.readAsDataURL(file);
   }
+};
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log('Submitting recipe with data:', formData);
 
     const cleanedIngredients = formData.ingredients.filter(
       (ingredient) => ingredient.trim() !== "",
     );
 
     const finalData = {
-      ...formData,
-      ingredients: cleanedIngredients,
+    name: formData.name,
+    description: formData.instructions.substring(0, 100), 
+    ingredients: JSON.stringify(cleanedIngredients),
+    instructions: formData.instructions,
+    prepTime: formData.prepTime ? Number(formData.prepTime) : 0,
+    imageLink: formData.imageLink || ""
     };
 
-    if (state.selectedRecipe) {
-      dispatch({
-        type: "UPDATE_RECIPE",
-        payload: { ...finalData, id: state.selectedRecipe.id },
-      });
-    } else {
-      dispatch({
-        type: "ADD_RECIPE",
-        payload: { ...finalData, id: Date.now() },
-      });
-    }
+    
+    console.log("SENDING:", finalData.imageLink.substring(0, 50));
 
-    dispatch({ type: "SET_SELECTED", payload: null });
-    navigate("/dashboard");
+    try {
+        if (state.selectedRecipe) {
+            await updateRecipeInDB(state.selectedRecipe.id, finalData);
+        } else {
+            await addRecipeToDB(finalData);
+        }
+        
+        dispatch({ type: "SET_SELECTED", payload: null });
+        navigate("/dashboard");
+    } catch (err) {
+        console.error("Failed to save to database:", err);
+    }
   };
 
   return (
@@ -201,8 +217,8 @@ const RecipeForm = () => {
                 id="imageLink"
                 name="imageLink"
                 placeholder="Enter image URL"
-                value={formData.imageLink}
-                change={handleChange}
+                value={formData.imageLink?.startsWith('data:') ? "File Uploaded" : formData.imageLink}
+  change={handleChange}
               />
             </div>
 

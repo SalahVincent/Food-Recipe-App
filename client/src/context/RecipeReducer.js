@@ -2,10 +2,17 @@ export const initialState = {
     recipes: JSON.parse(localStorage.getItem('myRecipes')) || [],
     searchQuery: '',
     selectedRecipe: null,
+    loading: true,
 }
 
 export const recipeReducer = (state, action) => {
     switch (action.type) {
+        case 'SET_RECIPES':
+            return {
+                ...state,
+                recipes: action.payload,
+                loading: false,
+            }
         case 'ADD_RECIPE':
             return {
                 ...state,

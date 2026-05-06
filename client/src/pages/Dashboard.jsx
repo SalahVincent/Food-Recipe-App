@@ -8,11 +8,11 @@ const Dashboard = () => {
   const recipes = state.recipes;
   const navigate = useNavigate();
 
-  const filteredRecipes = state.recipes.filter(recipe =>
-    recipe.name.toLowerCase().includes(state.searchQuery.toLowerCase())
-  )
+  const filteredRecipes = state.recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(state.searchQuery.toLowerCase()),
+  );
 
-  const sortedRecipes = [...filteredRecipes].sort((a,b) => b.id - a.id)
+  const sortedRecipes = [...filteredRecipes].sort((a, b) => b.id - a.id);
 
   console.log("Recipes in Dashboard:", recipes);
 
@@ -37,24 +37,26 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-10 px-10">
-  {sortedRecipes.length === 0 ? (
-    <div className="flex flex-col items-center justify-center py-20">
-      <p className="text-gray-400 text-xl">No recipes found matching <span className="text-blue-500">{state.searchQuery}</span></p>
-      <button 
-        onClick={() => dispatch({ type: 'SET_SEARCH', payload: '' })}
-        className="text-[#e63946] mt-2 underline cursor-pointer"
-      >
-        <img
-        className="h-15"
-        src="./clear.svg" alt="Clear Search" />
-      </button>
-    </div>
-  ) : (
+        {sortedRecipes.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <p className="text-gray-400 text-xl">
+              No recipes found matching{" "}
+              <span className="text-blue-500">{state.searchQuery}</span>
+            </p>
+            <button
+              onClick={() => dispatch({ type: "SET_SEARCH", payload: "" })}
+              className="text-[#e63946] mt-2 underline cursor-pointer"
+            >
+              <img className="h-15" src="./clear.svg" alt="Clear Search" />
+            </button>
+          </div>
+        ) : (
           <div className="flex flex-col gap-10">
             {(() => {
-              const sorted = [...state.recipes].sort((a, b) => b.id - a.id);
+              if (sortedRecipes.length === 0) return null;
+
               const latest = sortedRecipes[0];
-              const others = sorted.slice(1);
+              const others = sortedRecipes.slice(1);
 
               return (
                 <>

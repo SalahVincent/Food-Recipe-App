@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(RecipeContext);
+  const { state, dispatch, deleteRecipeFromDB } = useContext(RecipeContext);
   const recipe = state.selectedRecipe;
 
   const handleEdit = () => {
@@ -18,6 +18,7 @@ const Sidebar = () => {
   };
 
   console.log("Current Selected Recipe:", state.selectedRecipe);
+  console.log('Type of ingredients:', typeof recipe);
 
   return (
     <>
@@ -61,7 +62,7 @@ const Sidebar = () => {
                 Ingredients
               </h4>
               <ul className="list-disc pl-5 space-y-1">
-                {recipe.ingredients && recipe.ingredients.length > 0 ? (
+                {recipe.ingredients && recipe.ingredients.length != "" ? (
                   recipe.ingredients
                     .filter((ingredient) => ingredient.trim() !== "")
                     .map((ingredient, index) => (
@@ -90,14 +91,22 @@ const Sidebar = () => {
                 Edit Recipe
               </Button>
               <button
-                className="px-4 py-2 border border-black text-red-500 rounded-xl hover:bg-red-50"
-                onClick={() => {
-                  dispatch({ type: "DELETE_RECIPE", payload: recipe.id });
-                  closeSidebar();
-                }}
-              >
-                <img src="./trash.svg" />
-              </button>
+  className="px-4 py-2 border border-black text-red-500 rounded-xl hover:bg-red-50"
+  onClick={async () => {
+    try {
+      await deleteRecipeFromDB(recipe.id); 
+      
+      dispatch({ type: "DELETE_RECIPE", payload: recipe.id });
+      
+      closeSidebar();
+    } catch (err) {
+      console.error("Failed to delete from DB:", err);
+      alert("Could not delete recipe from server.");
+    }
+  }}
+>
+  <img src="./trash.svg" alt="Delete" />
+</button>
             </div>
           </div>
         ) : (

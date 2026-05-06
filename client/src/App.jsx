@@ -17,7 +17,6 @@ import Profile from "./pages/Profile";
 import AppLayout from "./components/layout/AppLayout";
 
 const App = () => {
-  const location = useLocation();
 
   return (
     <Routes>

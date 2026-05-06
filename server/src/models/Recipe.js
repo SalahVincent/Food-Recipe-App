@@ -2,6 +2,12 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 
 const Recipe = sequelize.define("Recipe", {
+    id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -11,9 +17,13 @@ const Recipe = sequelize.define("Recipe", {
         allowNull: false,
     },
     ingredients: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
+    type: DataTypes.TEXT,
+    allowNull: false,
+    get() {
+        const rawValue = this.getDataValue('ingredients');
+        return rawValue ? JSON.parse(rawValue) : [];
+    }
+},
     instructions: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -22,10 +32,14 @@ const Recipe = sequelize.define("Recipe", {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    imageUrl: {
-        type: DataTypes.STRING,
+    imageLink: {
+        type: DataTypes.TEXT('long'),
         allowNull: true,
     },
+    isFavorite: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    }
 });
 
 export default Recipe;
