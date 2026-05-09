@@ -3,14 +3,18 @@ import { RecipeContext } from "../../../context/RecipeContext";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({isOpen, setIsOpen}) => {
   const navigate = useNavigate();
   const { state, dispatch, deleteRecipeFromDB } = useContext(RecipeContext);
   const recipe = state.selectedRecipe;
 
   const handleEdit = () => {
-    console.log("Button Clicked, Navigating to Edit Form with Recipe:", recipe);
-    navigate("/add");
+    // STEP 1: Close the sidebar visually so it's GONE
+    setIsOpen(false); 
+    
+    // STEP 2: Go to the form. 
+    // state.selectedRecipe is still full of data, so the form will stay in "Edit" mode.
+    navigate("/add"); 
   };
 
   const closeSidebar = () => {
@@ -22,15 +26,15 @@ const Sidebar = () => {
 
   return (
     <>
-      {recipe && (
+      {isOpen && (
         <div
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity"
-          onClick={closeSidebar}
+          onClick={() => setIsOpen(false)}
         ></div>
       )}
 
       <aside
-        className={`fixed top-0 right-0 h-full w-90 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out p-8 overflow-y-auto ${recipe ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 h-full w-90 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out p-8 overflow-y-auto ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {recipe ? (
           <div className="flex flex-col h-full">

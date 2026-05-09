@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import Button from "../components/ui/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(RecipeContext);
@@ -13,6 +13,12 @@ const Dashboard = () => {
   );
 
   const sortedRecipes = [...filteredRecipes].sort((a, b) => b.id - a.id);
+
+  const {setIsSidebarOpen} = useOutletContext()
+  const handleRecipeClick = (recipe) => {
+    dispatch({ type: "SET_SELECTED", payload: recipe });
+    setIsSidebarOpen(true);
+  }
 
   console.log("Recipes in Dashboard:", recipes);
 
@@ -62,9 +68,7 @@ const Dashboard = () => {
                 <>
                   <div
                     className="relative w-full h-100 overflow-hidden rounded-t-3xl shadow-xl group cursor-pointer"
-                    onClick={() =>
-                      dispatch({ type: "SET_SELECTED", payload: latest })
-                    }
+                    onClick={() => handleRecipeClick(latest)}
                   >
                     <img
                       src={latest.imageLink || "./cover-template.jpg"}
@@ -115,7 +119,7 @@ const Dashboard = () => {
                         key={recipe.id}
                         className="bg-white rounded-3xl cursor-pointer w-74 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
                         onClick={() =>
-                          dispatch({ type: "SET_SELECTED", payload: recipe })
+                          handleRecipeClick(recipe)
                         }
                       >
                         <img

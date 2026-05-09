@@ -1,10 +1,12 @@
 import { Outlet, Navigate } from "react-router-dom";
 import Navbar from "./parts/Navbar";
-import Sidebar from "./parts/Sidebar";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import Sidebar from "./parts/Sidebar";
 
 const AppLayout = () => {
   const isAuthenticated = true;
+  const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
@@ -14,9 +16,9 @@ const AppLayout = () => {
   return (
     <div>
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-      <Navbar onMenuClick={() => setIsSidebarOpen(true)}/>
+      <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
       <main>
-        <Outlet context={{ setIsSidebarOpen }}/>
+        <Outlet context={{setIsSidebarOpen}}/>
       </main>
     </div>
   );
