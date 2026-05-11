@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky top-0 bg-[#ffffff6e] backdrop-blur-[8px] z-30">
+      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky top-0 bg-[#ffffff6e] backdrop-blur-sm z-30">
         <label>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
@@ -43,11 +43,14 @@ const Navbar = () => {
             }
           />
         </div>
-        <div className="flex h-8 justify-around w-30">
+        <div className="flex h-8 justify-around w-35">
           
           <img
           src="./notifications.svg" alt="" 
           onClick={() => navigate('/notifications')}/>
+
+          <img src="./forum.svg" alt="" 
+          onClick={() => navigate('/messages')}/>
           
           <img
           src='./account.svg'

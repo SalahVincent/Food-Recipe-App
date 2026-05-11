@@ -15,6 +15,7 @@ import Feed from "./pages/Feed";
 import NotificationsPage from "./pages/NotificationsPage";
 import Profile from "./pages/Profile";
 import AppLayout from "./components/layout/AppLayout";
+import Messages from "./pages/Messages";
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/favorites" element={<Favorites/>} />
         <Route path="/notifications" element={<NotificationsPage/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/messages" element={<Messages/>} />
 
         <Route path="/profile" element={<Profile/>} />
 

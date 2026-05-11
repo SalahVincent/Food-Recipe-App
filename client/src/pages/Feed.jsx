@@ -53,6 +53,9 @@ const Feed = () => {
       </div>
 
       <div className="rounded-xl w-[51.5%]">
+        <div className="rounded-[40px] bg-[#0000000c] h-10 flex flex-row items-center px-3">
+          <input type="text" placeholder="Create a post" className=""/>
+        </div>
         <h1 className="text-5xl py-3">Your Culinary Feed</h1>
         <nav className="">
           <ul className="flex gap-3 py-2 z-20">
@@ -182,7 +185,7 @@ const Feed = () => {
               </div>
             </div>
             <img
-              className="rounded-[25px] w-full rotate-3"
+              className="rounded-[25px] w-full rotate-3 overflow-hidden relative group cursor-pointer transition-transform duration-500 group-hover:rotate-0"
               src="./dummy_post1.webp"
               alt=""
             />
@@ -242,6 +245,14 @@ const Feed = () => {
               <p className="text-[12px]">Food Enthusiast</p>
             </div>
           </div>
+           <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl py-2 px-5 mt-3">
+            <div className="flex flex-col justify-center items-center ">
+              <p className="text-lg font-bold">1,234</p>
+              <p className="text-[12px]">Profile Views</p>
+            </div>
+            </div>
+             <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl py-2 px-5 mt-3 ">
+            <div className="flex flex-row"><img src="./bookmark.svg"/><p>SAVED RECIPES</p></div></div>
         </div>
       </div>
     </div>

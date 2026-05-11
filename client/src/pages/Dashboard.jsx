@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="px-10 py-3 mt-8 flex flex-row flex-wrap items-center justify-between">
+      <div className="px-20 py-3 mt-8 flex flex-row flex-wrap items-center justify-between">
         <div className="cursor-default">
           <h2 className="font-bold text-[3.5rem]">Your Kitchen</h2>
           <p className="text-lg text-gray-600">
@@ -42,7 +42,7 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      <div className="mt-10 px-10">
+      <div className="mt-10 px-20">
         {sortedRecipes.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
             <p className="text-gray-400 text-xl">
