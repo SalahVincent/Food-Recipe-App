@@ -70,3 +70,9 @@ nav li:hover {
     grid-template-columns: 1fr; /* Stack on mobile */
   }
 }
+
+@media screen and (max-width: 768px) {
+  .side1, .side2 {
+    display: none;
+  }
+}

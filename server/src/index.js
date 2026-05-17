@@ -21,10 +21,11 @@ app.get('/', (req, res) => {
 const startServer = async () => {
     await connectDB();
     await sequelize.sync({ alter: true });
-    console.log('Database synced successfully.');
+    console.log('> Database synced successfully.');
 
     app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`> Server is running on port ${PORT}`);
+    console.log(` \x1b[1m➜\x1b[0m  \x1b[1mLocal:\x1b[0m   \x1b[36mhttp://localhost:\x1b[1m${PORT}/\x1b[0m`);
 });
 }
 

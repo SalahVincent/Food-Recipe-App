@@ -16,6 +16,8 @@ import NotificationsPage from "./pages/NotificationsPage";
 import Profile from "./pages/Profile";
 import AppLayout from "./components/layout/AppLayout";
 import Messages from "./pages/Messages";
+import RecipeDetail from "./pages/RecipeDetail";
+import ChatLayout from "./components/layout/ChatLayout";
 
 const App = () => {
 
@@ -33,10 +35,14 @@ const App = () => {
         <Route path="/favorites" element={<Favorites/>} />
         <Route path="/notifications" element={<NotificationsPage/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/messages" element={<Messages/>} />
+        <Route path="/details" element={<RecipeDetail />} />
 
         <Route path="/profile" element={<Profile/>} />
 
+      </Route>
+
+      <Route element={<ChatLayout />}>
+        <Route path="/messages" element={<Messages/>} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

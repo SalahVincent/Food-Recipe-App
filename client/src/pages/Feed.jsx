@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "../components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
+  const navigate = useNavigate();
   const FollowSuggestions = ({ name }) => {
     return (
       <div className="flex items-center justify-between mr-5">
@@ -17,9 +19,33 @@ const Feed = () => {
       </div>
     );
   };
+
+  const UserProfile = ({ name, bio, profileViews, width}) => {
+    return (
+       <div className={`side2 w-[${width}]`}>
+        <div className="sticky top-25">
+          <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl p-5 ">
+            <div className="flex flex-col justify-center items-center ">
+              <img className="h-16" src="account.svg" alt="" />
+              <h1 className="text-xl font-bold text-center">{name}</h1>
+              <p className="text-[12px]">{bio}</p>
+            </div>
+          </div>
+           <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl py-2 px-5 mt-3">
+            <div className="flex flex-col justify-center items-center ">
+              <p className="text-lg font-bold">{profileViews}</p>
+              <p className="text-[12px]">Profile Views</p>
+            </div>
+            </div>
+             <div className="h-fit bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-xl py-2 px-5 mt-3 ">
+            <div className="flex flex-row justify-center"><img src="./bookmark.svg"/><p>SAVED</p></div></div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="main-content flex flex-row px-20 gap-12">
-      <div className=" rounded-xl w-[25%]">
+      <div className="side1 rounded-xl w-[25%]">
         <h1 className="border-b pb-3 mb-2">Who To Follow</h1>
         <FollowSuggestions name="Nyap Bless" />
         <FollowSuggestions name="Chu Abongkesi" />
@@ -53,8 +79,11 @@ const Feed = () => {
       </div>
 
       <div className="rounded-xl w-[51.5%]">
-        <div className="rounded-[40px] bg-[#0000000c] h-10 flex flex-row items-center px-3">
+        <div className="rounded-[40px] bg-[#0000000c] h-12 flex flex-row items-center px-3">
           <input type="text" placeholder="Create a post" className=""/>
+          <img
+          className="w-15 h-15"
+          src="./camera.svg" alt="" />
         </div>
         <h1 className="text-5xl py-3">Your Culinary Feed</h1>
         <nav className="">
@@ -65,7 +94,9 @@ const Feed = () => {
         </nav>
 
         <div></div>
-        <div className="w-full overflow-hidden rounded-[15px] relative group cursor-pointer my-4">
+        <div
+        onClick={() => {navigate('/details')}}
+        className="w-full overflow-hidden rounded-[15px] relative group cursor-pointer my-4">
           <img
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             src="./dummy_bg.jpg"
@@ -97,7 +128,8 @@ const Feed = () => {
               ))}
             </div>
           </div>
-          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+          <div
+          className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
             <h1 className="text-white text-3xl">Jaff Davy Arnold</h1>
             <p className="text-gray-300">
               Cameroonian fried rice with a twist of local spices and a blend of
@@ -138,7 +170,9 @@ const Feed = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-[15px] relative group flex bg-[#00000013] px-9 py-7 gap-5">
+        <div
+        onClick={() => {navigate('/details')}}
+        className="w-full rounded-[15px] relative group flex bg-[#00000013] px-9 py-7 gap-5">
           <div className="w-[50%]">
             <a href="" className="flex h-13 items-center gap-2 mb-3">
               <img className="h-full" src="./account.svg" />
@@ -236,25 +270,7 @@ const Feed = () => {
         </div>
       </div>
 
-      <div className="w-[20%]">
-        <div className="sticky top-25">
-          <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl p-5 ">
-            <div className="flex flex-col justify-center items-center ">
-              <img className="h-16" src="account.svg" alt="" />
-              <h1 className="text-xl font-bold text-center">Vincent Salah</h1>
-              <p className="text-[12px]">Food Enthusiast</p>
-            </div>
-          </div>
-           <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl py-2 px-5 mt-3">
-            <div className="flex flex-col justify-center items-center ">
-              <p className="text-lg font-bold">1,234</p>
-              <p className="text-[12px]">Profile Views</p>
-            </div>
-            </div>
-             <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl py-2 px-5 mt-3 ">
-            <div className="flex flex-row"><img src="./bookmark.svg"/><p>SAVED RECIPES</p></div></div>
-        </div>
-      </div>
+      <UserProfile name="Vincent Salah" bio="Food enthusiast" profileViews="1.5K" width="20%" />
     </div>
   );
 };

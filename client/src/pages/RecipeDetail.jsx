@@ -2,7 +2,12 @@ import React from 'react'
 
 const RecipeDetail = () => {
   return (
-    <div>RecipeDetail</div>
+    <div className='px-20'>RecipeDetail
+    <div>
+      <img src="./dummy_post1.webp" alt="" />
+    </div>
+    <div></div>
+    </div>
   )
 }
 

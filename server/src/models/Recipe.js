@@ -32,6 +32,10 @@ const Recipe = sequelize.define("Recipe", {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
+    servings: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
     imageLink: {
         type: DataTypes.TEXT('long'),
         allowNull: true,

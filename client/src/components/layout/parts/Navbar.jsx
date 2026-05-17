@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky top-0 bg-[#ffffff6e] backdrop-blur-sm z-30">
-        <label>
+        <label className="w-[20rem] cursor-pointer">
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
             <sub className="font-[Inter] text-[20px]">CMR</sub>
