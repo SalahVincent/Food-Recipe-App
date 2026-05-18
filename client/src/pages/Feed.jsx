@@ -39,6 +39,10 @@ const Feed = () => {
             </div>
              <div className="h-fit bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-xl py-2 px-5 mt-3 ">
             <div className="flex flex-row justify-center"><img src="./bookmark.svg"/><p>SAVED</p></div></div>
+
+            <div className="h-15 w-15 p-3 bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-[20px] absolute top-110 right-[-30px]">
+              <img className="w-full" src="./ai.png" alt="ai logo" />
+            </div>
         </div>
       </div>
     )
@@ -79,10 +83,10 @@ const Feed = () => {
       </div>
 
       <div className="rounded-xl w-[51.5%]">
-        <div className="rounded-[40px] bg-[#0000000c] h-12 flex flex-row items-center px-3">
+        <div className="rounded-[40px] bg-[#0000000c] h-12 flex flex-row justify-between items-center px-3">
           <input type="text" placeholder="Create a post" className=""/>
           <img
-          className="w-15 h-15"
+          className="w-15 h-15 cursor-pointer"
           src="./camera.svg" alt="" />
         </div>
         <h1 className="text-5xl py-3">Your Culinary Feed</h1>
@@ -130,6 +134,7 @@ const Feed = () => {
           </div>
           <div
           className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+            <img className="h-30 w-30" src="./account-white.svg" />
             <h1 className="text-white text-3xl">Jaff Davy Arnold</h1>
             <p className="text-gray-300">
               Cameroonian fried rice with a twist of local spices and a blend of
@@ -265,6 +270,7 @@ const Feed = () => {
               <p className="text-gray-200 text-sm mt-1 drop-shadow-sm">
                 @username • 2 hours ago
               </p>
+              <img className="h-30 w-30" src="./account-white.svg" />
             </div>
           </div>
         </div>

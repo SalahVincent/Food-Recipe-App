@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 const startServer = async () => {
     await connectDB();
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log('> Database synced successfully.');
 
     app.listen(PORT, () => {

@@ -18,6 +18,7 @@ import AppLayout from "./components/layout/AppLayout";
 import Messages from "./pages/Messages";
 import RecipeDetail from "./pages/RecipeDetail";
 import ChatLayout from "./components/layout/ChatLayout";
+import PlateScanner from "./pages/PlateScanner";
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/notifications" element={<NotificationsPage/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/details" element={<RecipeDetail />} />
+        <Route path="/scan" element={<PlateScanner />} />
 
         <Route path="/profile" element={<Profile/>} />
 

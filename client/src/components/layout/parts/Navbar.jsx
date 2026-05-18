@@ -46,13 +46,17 @@ const Navbar = () => {
         <div className="flex h-8 justify-around w-35">
           
           <img
+          className="cursor-pointer"
           src="./notifications.svg" alt="" 
           onClick={() => navigate('/notifications')}/>
 
-          <img src="./forum.svg" alt="" 
+          <img
+          className="cursor-pointer"
+          src="./forum.svg" alt="" 
           onClick={() => navigate('/messages')}/>
           
           <img
+          className="cursor-pointer"
           src='./account.svg'
           onClick={() => navigate('/profile')}/>
         </div>

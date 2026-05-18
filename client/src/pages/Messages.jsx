@@ -10,7 +10,7 @@ const Messages = () => {
       <section className='flex h-full gap-3'>
         <div className='icon'>
           <ol className='flex flex-col gap-3'>
-            <li className='ml-3 border-b-2 pb-3 border-[#00000013]'>
+            <li className='ml-3 border-b-2 pb-3 pt-3 border-[#00000013]'>
               <img className="w-12 h-12 rounded-lg" 
               src="" alt="" />
             </li>
@@ -38,7 +38,7 @@ const Messages = () => {
         </div>
       </section>
 
-      <div className='gap-2 absolute bottom-4 left-4 rounded-[8px] border border-[#00000013] bg-white flex p-3'>
+      <div className='gap-2 absolute bottom-4 left-4 rounded-lg border border-[#00000013] bg-white flex p-3'>
         <img
         className='h-13 w-13'
         src="./pp.jpeg" alt="" />
