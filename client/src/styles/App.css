@@ -65,9 +65,13 @@ nav li:hover {
   
 }
 
+.filter-active-red {
+  filter: invert(27%) sepia(87%) saturate(3015%) hue-rotate(341deg) brightness(93%) contrast(92%);
+}
+
 @media (max-width: 768px) {
   .main-content {
-    grid-template-columns: 1fr; /* Stack on mobile */
+    grid-template-columns: 1fr;
   }
 }
 

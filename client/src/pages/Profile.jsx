@@ -18,7 +18,7 @@ const Profile = () => {
           <p>SAVED RECIPES</p>
           <span
           onClick={() => navigate('/favorites')}
-          className='text-[#0000008e] cursor-pointer'>View All</span>
+          className='text-[#0000008e] cursor-pointer hover:text-[#e63946]'>View All</span>
         </div>
     </div>
             <Dashboard />

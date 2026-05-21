@@ -10,10 +10,10 @@ const Feed = () => {
         <div className="flex gap-2 items-center py-1">
           <img className="h-12" src="./account.svg" alt="" />
           <h1 className="text-[16px] font-semibold">
-            <a href="">{name}</a>
+            <a href="" className="text-[#00000098] hover:text-black">{name}</a>
           </h1>
         </div>
-        <button className="text-[#e64936] font-bold cursor-pointer h-fit">
+        <button className="hover:text-[#e64936] text-[#e6483694] font-bold cursor-pointer h-fit">
           Follow
         </button>
       </div>
@@ -40,7 +40,9 @@ const Feed = () => {
              <div className="h-fit bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-xl py-2 px-5 mt-3 ">
             <div className="flex flex-row justify-center"><img src="./bookmark.svg"/><p>SAVED</p></div></div>
 
-            <div className="h-15 w-15 p-3 bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-[20px] absolute top-110 right-[-30px]">
+            <div
+            onClick={() => navigate('/scan')}
+            className="h-15 w-15 p-3 bg-[#0000000a] border-[#00000069] hover:bg-[#0000003b] rounded-[20px] absolute top-110 -right-7.5">
               <img className="w-full" src="./ai.png" alt="ai logo" />
             </div>
         </div>
@@ -57,19 +59,19 @@ const Feed = () => {
 
         <footer className="text-[#000000a2] mt-5 flex flex-col items-center gap-3 sticky top-25">
           <div className="text-[15px] gap-4 flex flex-wrap leading-1 py">
-            <a className="text-[12px]" href="">
+            <a className="text-[12px] hover:text-black" href="">
               About
             </a>
-            <a className="text-[12px]" href="">
+            <a className="text-[12px] hover:text-black" href="">
               Help
             </a>
-            <a className="text-[12px]" href="">
+            <a className="text-[12px] hover:text-black" href="">
               Privacy
             </a>
-            <a className="text-[12px]" href="">
+            <a className="text-[12px] hover:text-black" href="">
               Terms
             </a>
-            <a className="text-[12px]" href="">
+            <a className="text-[12px] hover:text-black" href="">
               Logout
             </a>
           </div>
@@ -87,7 +89,7 @@ const Feed = () => {
           <input type="text" placeholder="Create a post" className=""/>
           <img
           className="w-15 h-15 cursor-pointer"
-          src="./camera.svg" alt="" />
+          src="" alt="" />
         </div>
         <h1 className="text-5xl py-3">Your Culinary Feed</h1>
         <nav className="">

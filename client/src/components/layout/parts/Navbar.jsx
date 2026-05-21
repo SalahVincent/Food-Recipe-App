@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "../../../context/RecipeContext";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const Navbar = () => {
   const { state, dispatch } = useContext(RecipeContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
       <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky top-0 bg-[#ffffff6e] backdrop-blur-sm z-30">
-        <label className="w-[20rem] cursor-pointer">
+        <label className="w-[20rem] cursor-pointer" onClick={() => navigate("/feed")}>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
             <sub className="font-[Inter] text-[20px]">CMR</sub>
@@ -20,8 +23,14 @@ const Navbar = () => {
           <ul className="flex flex-row gap-3">
             
             <li>
-              <a
-              onClick={() => {navigate("/feed")}}className="flex items-center"><img className="h-8" src="./dashboard.svg" alt="" />Feed</a>
+              <button
+                onClick={() => navigate("/feed")}
+                className={`flex items-center gap-2 font-medium cursor-pointer transition-colors ${
+                  isActive("/feed") ? "text-[#e63946]" : "text-gray-600 hover:text-black"
+                }`}
+              >
+                Feed
+              </button>
             </li>
             
           </ul>
@@ -46,19 +55,25 @@ const Navbar = () => {
         <div className="flex h-8 justify-around w-35">
           
           <img
-          className="cursor-pointer"
-          src="./notifications.svg" alt="" 
-          onClick={() => navigate('/notifications')}/>
+              className={`cursor-pointer h-7 hover:translate-y-[-2px] transition-all ${isActive("/notifications") ? "filter-active-red" : ""}`}
+              src="./notifications.svg"
+              alt="Notifications"
+              onClick={() => navigate("/notifications")}
+            />
 
-          <img
-          className="cursor-pointer"
-          src="./forum.svg" alt="" 
-          onClick={() => navigate('/messages')}/>
-          
-          <img
-          className="cursor-pointer"
-          src='./account.svg'
-          onClick={() => navigate('/profile')}/>
+            <img
+              className={`cursor-pointer h-7 hover:translate-y-[-2px] transition-all ${isActive("/messages") ? "filter-active-red" : ""}`}
+              src="./forum.svg"
+              alt="Messages"
+              onClick={() => navigate("/messages")}
+            />
+
+            <img
+              className={`cursor-pointer h-7 transition-all ${isActive("/profile") ? "border-2 rounded-full border-[#e63946]" : ""}`}
+              src="./pp.jpeg"
+              alt="Profile"
+              onClick={() => navigate("/profile")}
+            />
         </div>
         </div>
         
