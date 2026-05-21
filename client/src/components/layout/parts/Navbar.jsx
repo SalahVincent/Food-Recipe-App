@@ -55,21 +55,21 @@ const Navbar = () => {
         <div className="flex h-8 justify-around w-35">
           
           <img
-              className={`cursor-pointer h-7 hover:translate-y-[-2px] transition-all ${isActive("/notifications") ? "filter-active-red" : ""}`}
+              className={`cursor-pointer h-7 hover:-translate-y-0.5 transition-all ${isActive("/notifications") ? "filter-active-red" : ""}`}
               src="./notifications.svg"
               alt="Notifications"
               onClick={() => navigate("/notifications")}
             />
 
             <img
-              className={`cursor-pointer h-7 hover:translate-y-[-2px] transition-all ${isActive("/messages") ? "filter-active-red" : ""}`}
+              className={`cursor-pointer h-7 hover:-translate-y-0.5 transition-all ${isActive("/messages") ? "filter-active-red" : ""}`}
               src="./forum.svg"
               alt="Messages"
               onClick={() => navigate("/messages")}
             />
 
             <img
-              className={`cursor-pointer h-7 transition-all ${isActive("/profile") ? "border-2 rounded-full border-[#e63946]" : ""}`}
+              className={`cursor-pointer h-7 hover:-translate-y-0.5 transition-all ${isActive("/profile") ? "border-2 rounded-full border-[#e63946]" : ""}`}
               src="./pp.jpeg"
               alt="Profile"
               onClick={() => navigate("/profile")}

@@ -7,7 +7,7 @@ const LandingPage = () => {
 
   return (
     <div className="bg-white">
-      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky backdrop-blur-[8px] top-0">
+      <div className="navbar flex flex-wrap items-center justify-between px-20 py-3 sticky backdrop-blur-sm top-0">
         <label>
           <h1 className="font-bold text-[#e63946] text-[2.5rem]">
             Cook<span className="navbar-span">er</span>
@@ -75,11 +75,11 @@ const LandingPage = () => {
             <em>Earning Your Stars in the</em>
             <span className="font-bold text-[#e63946]">Kitchen Arena.</span>
           </h2>
-          <p className="py-[25px]">Our star-based system isn't just about popularity. It's a validation of craft. As a community members "star" your recipes, you rise through the ranks from an amateur to a master chef, unlocking exclusive editorial features and platform prestige.</p>
+          <p className="py-6.25">Our star-based system isn't just about popularity. It's a validation of craft. As a community members "star" your recipes, you rise through the ranks from an amateur to a master chef, unlocking exclusive editorial features and platform prestige.</p>
         </div>
       </div>
       <div className='flex justify-center flex-col items-center text-center p-20'>
-        <img className="w-[40px]" src="./fork_spoon.svg" alt="" />
+        <img className="w-10" src="./fork_spoon.svg" alt="" />
         <h1 className="text-7xl">Plated to <em className="text-[#e63946]">Perfection.</em></h1>
         <p className="w-[60%] py-10">The table is set. All that's missing is your perspective. Join Cameroon's most sophisticated digital culinary circle today</p>
         <div>

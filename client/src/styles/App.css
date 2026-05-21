@@ -61,10 +61,6 @@ nav li:hover {
   animation: slideIn 0.9s ease-out forwards;
 }
 
-.main-content {
-  
-}
-
 .filter-active-red {
   filter: invert(27%) sepia(87%) saturate(3015%) hue-rotate(341deg) brightness(93%) contrast(92%);
 }
