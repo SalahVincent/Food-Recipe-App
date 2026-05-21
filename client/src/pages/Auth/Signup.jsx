@@ -49,7 +49,7 @@ const Signup = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col quote rounded-[40px] border-2 border-[#ffffff13] p-5 h-fit w-[300px] rotate-3 text-[#ffffffa2]">
+            <div className="flex flex-col quote rounded-[40px] border-2 border-[#ffffff13] p-5 h-fit w-75 rotate-3 text-[#ffffffa2]">
                 <img src="./fork_spoon.svg" alt="" className='w-6'/>
                 <em className="text-[#ffffffa2]">"Africa has 5,000 years of culinary history... we must avoid subjects that divide rather than unite. Eating is a civilized act."</em>
                 <span className='text-[13px] py-3'> - CHRISTIAN ABEGAN</span>
@@ -77,15 +77,15 @@ const Signup = () => {
                 <div>
                     <h1 className='text-4xl'><em>Compose Your Portfolio</em></h1>
                     <p>Tell the world about your culinary perspective</p>
-                    <input className="border w-[300px] h-[300px] rounded-[100%] flex items-center justify-center" type='file' placeholder='Upload Avatar' />
+                    <input className="border w-75 h-75 rounded-[100%] flex items-center justify-center" type='file' placeholder='Upload Avatar' />
                 </div>
             <form className='bg-white rounded-[20px] p-10 leading-10 flex flex-col'>
             <label htmlFor="">USER NAME</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type="text" placeholder='e.g Vincent' />
+            <input className="bg-[#0000000c] w-87.5 rounded-sm p-1" type="text" placeholder='e.g Vincent' />
             <label htmlFor="">EMAIL</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type='email' placeholder='Bamenda, North West' />
+            <input className="bg-[#0000000c] w-87.5 rounded-sm p-1" type='email' placeholder='Bamenda, North West' />
             <label htmlFor="">PASSWORD</label>
-            <input className="bg-[#0000000c] w-[350px] rounded-sm p-1" type='password' placeholder='chef1234'/>
+            <input className="bg-[#0000000c] w-87.5 rounded-sm p-1" type='password' placeholder='chef1234'/>
 
             <div className="flex justify-center mt-8">
             <Button
