@@ -22,7 +22,7 @@ const Feed = () => {
 
   const UserProfile = ({ name, bio, profileViews, width}) => {
     return (
-       <div className={`side2 w-[${width}]`}>
+       <div className={`side3 w-[${width}]`}>
         <div className="sticky top-25">
           <div className="h-fit bg-[#0000000a] border-[#00000069] rounded-xl p-5 ">
             <div className="flex flex-col justify-center items-center ">
@@ -84,7 +84,7 @@ const Feed = () => {
         </footer>
       </div>
 
-      <div className="rounded-xl w-[51.5%]">
+      <div className="side2 rounded-xl w-[51.5%]">
         <div className="rounded-[40px] bg-[#0000000c] h-12 flex flex-row justify-between items-center px-3">
           <input type="text" placeholder="Create a post" className=""/>
           <img

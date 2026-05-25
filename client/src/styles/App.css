@@ -72,7 +72,19 @@ nav li:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .side1, .side2 {
+  .side1, .side3 {
     display: none;
+  }
+
+  .side2 {
+    width: 100%;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .main-content {
+    padding: 20px;
   }
 }
