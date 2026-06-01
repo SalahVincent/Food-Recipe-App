@@ -4,7 +4,9 @@ import axios from 'axios';
 
 export const RecipeContext = createContext();
 
-const API_URL = 'http://localhost:5000/api/recipes'
+const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api/recipes'
+    : 'https://food-recipe-app-o49v.onrender.com/api/recipes';
 
 export const RecipeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(recipeReducer, initialState);
@@ -33,6 +35,7 @@ export const RecipeProvider = ({ children }) => {
     const deleteRecipeFromDB = async (id) => {
     try {
         await axios.delete(`${API_URL}/${id}`);
+        dispatch({type: 'DELETE_RECIPE', payload: id})
     } catch (err) {
         console.error(err);
         throw err;
