@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://food-recipe-9x7yigu7z-vincent-salahs-projects.vercel.app'
+  'https://food-recipe-35l6zqz55-vincent-salahs-projects.vercel.app'
 ];
 
 app.use(cors({
