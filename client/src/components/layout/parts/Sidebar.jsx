@@ -9,11 +9,8 @@ const Sidebar = ({isOpen, setIsOpen}) => {
   const recipe = state.selectedRecipe;
 
   const handleEdit = () => {
-    // STEP 1: Close the sidebar visually so it's GONE
     setIsOpen(false); 
     
-    // STEP 2: Go to the form. 
-    // state.selectedRecipe is still full of data, so the form will stay in "Edit" mode.
     navigate("/add"); 
   };
 
