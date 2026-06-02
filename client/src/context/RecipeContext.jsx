@@ -23,14 +23,25 @@ export const RecipeProvider = ({ children }) => {
     loadRecipes();
     }, [])
 
-    const addRecipeToDB = async (recipeData) => {
-        try {
-            const {data} = await axios.post(API_URL, recipeData)
-            dispatch({type: 'ADD_RECIPE', payload: data})
-        } catch (error) {
-            alert('Failed to add recipe');
-        }
-    }
+const addRecipeToDB = async (recipeData) => {
+  try {
+    console.log("Context received for DB payload:", recipeData);
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipeData),
+    });
+
+    const data = await response.json();
+    
+    dispatch({ type: "ADD_RECIPE", payload: data }); 
+  } catch (err) {
+    console.error(err);
+  }
+};
 
     const deleteRecipeFromDB = async (id) => {
     try {

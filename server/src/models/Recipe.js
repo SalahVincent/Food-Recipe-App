@@ -1,4 +1,3 @@
-// recipe.js
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 
@@ -32,28 +31,27 @@ const Recipe = sequelize.define("Recipe", {
   prepTime: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    field: 'prep_time' // <--- MAPS TO YOUR EXACT DB COLUMN
+    field: 'prep_time'
   },
   servings: {
   type: DataTypes.INTEGER,
   allowNull: true,
   defaultValue: 1,
-  field: 'servings' // Maps cleanly to postgres
+  field: 'servings'
   },
   imageLink: {
     type: DataTypes.TEXT('long'),
     allowNull: true,
-    field: 'image_link' // <--- MAPS TO DB COLUMN (fixes the missing column issue)
+    field: 'image_link'
   },
   isFavorite: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    field: 'is_favorite' // <--- MAPS TO YOUR EXACT DB COLUMN
+    field: 'is_favorite'
   }
 }, {
-  // Tells Sequelize to map camelCase timestamps to snake_case DB columns
   underscored: true, 
-  tableName: 'recipes' // Forces it to look at the exact table you queried in terminal
+  tableName: 'recipes'
 });
 
 export default Recipe;

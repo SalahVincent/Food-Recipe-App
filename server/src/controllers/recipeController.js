@@ -2,8 +2,17 @@ import Recipe from "../models/Recipe.js";
 
 export const createRecipe = async (req, res) => {
     try {
-        const { name, description, ingredients, instructions, imageLink } = req.body;
-        const recipe = await Recipe.create({ name, description, ingredients, instructions, imageLink });
+        const { name, description, ingredients, instructions, imageLink, prep_time, servings } = req.body;
+        const recipe = await Recipe.create({ 
+            name, 
+            description, 
+            ingredients, 
+            instructions, 
+            imageLink,
+            prepTime: prep_time,
+            servings 
+        });
+        
         res.status(201).json(recipe);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -13,11 +22,11 @@ export const createRecipe = async (req, res) => {
 export const getRecipes = async (req, res) => {
     try {
         const recipes = await Recipe.findAll();
-        res.json(recipes)
+        res.json(recipes);
     }  catch (error) {
-    res.status(500).json({ error: error.message });
-}
-}
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export const updateRecipe = async (req, res) => {
   try {
@@ -29,7 +38,17 @@ export const updateRecipe = async (req, res) => {
       return res.status(404).json({ message: `Recipe with ID ${id} not found` });
     }
 
-    await recipe.update(req.body);
+    const { name, description, ingredients, instructions, imageLink, prep_time, servings } = req.body;
+
+    await recipe.update({
+        name,
+        description,
+        ingredients,
+        instructions,
+        imageLink,
+        prepTime: prep_time,
+        servings
+    });
     
     res.status(200).json(recipe);
   } catch (error) {

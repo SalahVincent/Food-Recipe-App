@@ -4,7 +4,16 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import "../styles/App.css";
 
-const Input = ({ label, type, id, name, placeholder, value, change, required }) => {
+const Input = ({
+  label,
+  type,
+  id,
+  name,
+  placeholder,
+  value,
+  change,
+  required,
+}) => {
   return (
     <div className="flex flex-col w-full gap-1">
       <label htmlFor={id}>{label}</label>
@@ -31,20 +40,26 @@ const FileInput = ({ label, id, name, onFileSelect }) => {
           <p className="text-gray-500 text-sm">Click to upload cover image</p>
         </div>
       </label>
-      <input 
-        className="hidden" 
-        type="file" 
-        id={id} 
-        name={name} 
+      <input
+        className="hidden"
+        type="file"
+        id={id}
+        name={name}
         accept="image/*"
-        onChange={(e) => onFileSelect(e.target.files[0])} 
+        onChange={(e) => onFileSelect(e.target.files[0])}
       />
     </div>
   );
 };
 
 const RecipeForm = () => {
-  const { state, dispatch, addRecipeToDB, deleteRecipeFromDB, updateRecipeInDB } = useContext(RecipeContext);
+  const {
+    state,
+    dispatch,
+    addRecipeToDB,
+    deleteRecipeFromDB,
+    updateRecipeInDB,
+  } = useContext(RecipeContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -99,63 +114,65 @@ const RecipeForm = () => {
   };
 
   useEffect(() => {
-    
-  if (state.selectedRecipe && formData.name === "") {
-    setFormData({
-      ...state.selectedRecipe,
+    if (state.selectedRecipe && formData.name === "") {
+      setFormData({
+        ...state.selectedRecipe,
 
-      ingredients: typeof state.selectedRecipe.ingredients === 'string' 
-        ? JSON.parse(state.selectedRecipe.ingredients) 
-        : state.selectedRecipe.ingredients || [""]
-    });
-  }
-}, [state.selectedRecipe]);
+        prepTime: state.selectedRecipe.prep_time || state.selectedRecipe.prepTime || "",
+        servings: state.selectedRecipe.servings || "",
+        ingredients:
+          typeof state.selectedRecipe.ingredients === "string"
+            ? JSON.parse(state.selectedRecipe.ingredients)
+            : state.selectedRecipe.ingredients || [""],
+      });
+    }
+  }, [state.selectedRecipe]);
 
   const handleFileChange = (file) => {
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setFormData((prev) => ({
-        ...prev,
-        imageLink: reader.result
-      }));
-    };
-    reader.readAsDataURL(file);
-  }
-};
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          imageLink: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Submitting recipe with data:', formData);
+    console.log("Submitting recipe with data:", formData);
 
     const cleanedIngredients = formData.ingredients.filter(
       (ingredient) => ingredient.trim() !== "",
     );
 
     const finalData = {
-    name: formData.name,
-    description: formData.instructions.substring(0, 100), 
-    ingredients: JSON.stringify(cleanedIngredients),
-    instructions: formData.instructions,
-    prepTime: formData.prepTime ? Number(formData.prepTime) : 0,
-    imageLink: formData.imageLink || ""
+      name: formData.name,
+      description: formData.instructions.substring(0, 100),
+      ingredients: JSON.stringify(cleanedIngredients),
+      instructions: formData.instructions,
+      prep_time: formData.prepTime ? Number(formData.prepTime) : 0,
+      servings: formData.servings ? Number(formData.servings) : 1,
+      imageLink: formData.imageLink || "",
     };
 
-    
     console.log("SENDING:", finalData.imageLink.substring(0, 50));
 
     try {
-        if (state.selectedRecipe) {
-            await updateRecipeInDB(state.selectedRecipe.id, finalData);
-        } else {
-            await addRecipeToDB(finalData);
-        }
-        
-        dispatch({ type: "SET_SELECTED", payload: null });
-        navigate("/dashboard");
+      if (state.selectedRecipe) {
+        await updateRecipeInDB(state.selectedRecipe.id, finalData);
+      } else {
+        await addRecipeToDB(finalData);
+      }
+
+      dispatch({ type: "SET_SELECTED", payload: null });
+      navigate("/dashboard");
     } catch (err) {
-        console.error("Failed to save to database:", err);
+      console.error("Failed to save to database:", err);
     }
   };
 
@@ -199,14 +216,16 @@ const RecipeForm = () => {
                 change={handleChange}
                 required
               />
-             <FileInput 
-                label="RECIPE COVER IMAGE" 
-                id="image" 
-                name="image" 
+              <FileInput
+                label="RECIPE COVER IMAGE"
+                id="image"
+                name="image"
                 onFileSelect={handleFileChange}
               />
               <div>
-                <p className="text-xs text-gray-400 mb-2 font-bold">IMAGE PREVIEW</p>
+                <p className="text-xs text-gray-400 mb-2 font-bold">
+                  IMAGE PREVIEW
+                </p>
                 <img
                   className="w-full h-60 rounded-3xl object-cover border-2 border-dashed border-gray-200"
                   src={formData.imageLink || "./cover-template.jpg"}
@@ -217,8 +236,12 @@ const RecipeForm = () => {
                 id="imageLink"
                 name="imageLink"
                 placeholder="Enter image URL"
-                value={formData.imageLink?.startsWith('data:') ? "File Uploaded" : formData.imageLink}
-  change={handleChange}
+                value={
+                  formData.imageLink?.startsWith("data:")
+                    ? "File Uploaded"
+                    : formData.imageLink
+                }
+                change={handleChange}
               />
             </div>
 
@@ -284,36 +307,31 @@ const RecipeForm = () => {
             </div>
           </div>
           <div className="flex flex-wrap justify-between gap-3 mt-10">
+            {/* REPLACE YOUR OLD QUICK DETAILS BLOCK WITH THIS */}
             <div className="flex flex-col p-8 bg-white rounded-xl gap-3 mt-7 w-[40%]">
-              <label className="quick-details">Quick Details</label>
-              <div className="grid grid-cols-2 grid-flow-row-dens gap-4">
+              <label className="quick-details font-bold">Quick Details</label>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <span className="w-fit">PREP TIME</span>
-                  <div className="flex">
-                    <input
-                      type="number"
-                      name="prepTime"
-                      placeholder="--"
-                      value={formData.prepTime}
-                      onChange={handleChange}
-                      className="w-10"
-                    />
-                    <span className="text-gray-500">mins</span>
-                  </div>
+                  <Input
+                    label="PREP TIME (mins)"
+                    type="number"
+                    id="prepTime"
+                    name="prepTime"
+                    placeholder="--"
+                    value={formData.prepTime || ""}
+                    change={handleChange}
+                  />
                 </div>
                 <div>
-                  <span className="w-fit">SERVINGS</span>
-                  <div>
-                    <input
-                      type="number"
-                      name="servings"
-                      placeholder="--"
-                      value={formData.servings}
-                      onChange={handleChange}
-                      className="w-10"
-                    />
-                    <span className="text-gray-500">people</span>
-                  </div>
+                  <Input
+                    label="SERVINGS (people)"
+                    type="number"
+                    id="servings"
+                    name="servings"
+                    placeholder="--"
+                    value={formData.servings || ""}
+                    change={handleChange}
+                  />
                 </div>
               </div>
             </div>
