@@ -1,11 +1,11 @@
-# 🏗️ Cooker CMR: Project Roadmap & Strategic Plan
+# Cooker CMR: Project Roadmap & Plan
 
 ## 1. Project Vision
-To transform a personal recipe manager into a **Social Culinary Network** where creators share high-quality recipes, and users discover content through a merit-based **Rating System** rather than simple likes.
+To transform a personal cookbook into a **Social Culinary Network** where creators share high-quality recipes, and users discover content through a merit-based **Rating System** rather than simple likes.
 
 ---
 
-## 2. Core Social Mechanics
+## 2. Core Social Activities
 * **The Rating Standard:** Quality is measured by a 1–5 star rating system. This creates a data-driven feed where the best-tasting recipes naturally rise to the top.
 * **Collections (Saves):** A utility feature allowing users to build their own private digital cookbooks from the public feed.
 * **Creator Profiles:** Users can transition from "Home Cooks" to "Creators" with dedicated profiles showcasing their culinary portfolio and average community rating.
@@ -13,7 +13,7 @@ To transform a personal recipe manager into a **Social Culinary Network** where 
 
 ---
 
-## 3. Technical Architecture (The "Monorepo" Stack)
+## 3. Technical Architecture
 
 ### **Frontend (Client)**
 * **Framework:** React.js (Vite)
@@ -23,18 +23,18 @@ To transform a personal recipe manager into a **Social Culinary Network** where 
 
 ### **Backend (Server)**
 * **Environment:** Node.js & Express
-* **ORM:** **Sequelize** (PostgreSQL)
-* **Database:** **PostgreSQL**
+* **ORM:** **Sequelize**
+* **Database:** PostgreSQL
 * **Auth:** JWT (JSON Web Tokens) with Bcrypt for password hashing
 
 ---
 
-## 4. Database Schema Design (The Social Graph)
+## 4. DBSchema Design (The Social Graph)
 
 | Model | Purpose | Relationships |
 | :--- | :--- | :--- |
-| **Users** | Identity & Auth | Has many Recipes, Ratings, and Notifications |
-| **Recipes** | Content | Belongs to a Creator; Has many Ratings and Saves |
+| **Users** | Identity & Authorization | Has many Recipes, Ratings, and Notifications |
+| **Recipes** | Content | Belongs to a User; Has many Ratings and Saves |
 | **Ratings** | Social Validation | Junction table between User & Recipe (Stores stars + comments) |
 | **Saves** | Utility | Junction table between User & Recipe (The "Bookmark") |
 | **Notifications**| Retention | Tracks events (Actor → Action → Recipient) |
@@ -74,4 +74,4 @@ To transform a personal recipe manager into a **Social Culinary Network** where 
 | **New Post** | `createRecipe` | "Chef [Name] just posted a new recipe!" |
 
 ---
-*Created with the goal of building the #1 Social Recipe Platform in CMR.*
+*Created with the goal of building the #1 Social Recipe Platform in Cameroon.*
