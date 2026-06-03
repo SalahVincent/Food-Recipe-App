@@ -1,4 +1,9 @@
 {
-  "framework": "vite",
-  "rootDirectory": null
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "zeroConfig": true }
+    }
+  ]
 }
