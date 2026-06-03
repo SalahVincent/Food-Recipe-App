@@ -101,6 +101,16 @@ const RecipeForm = () => {
   useEffect(() => {
     if (state.selectedRecipe) {
       setFormData(state.selectedRecipe);
+    } else {
+      setFormData({
+        name: "",
+        imageLink: "",
+        ingredients: [""],
+        instructions: "",
+        prepTime: "",
+        servings: "",
+        isFavorite: false,
+      });
     }
   }, [state.selectedRecipe]);
 
@@ -117,10 +127,7 @@ const RecipeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const cleanedIngredients = formData.ingredients.filter(
-      (ingredient) => ingredient.trim() !== "",
-    );
+    const cleanedIngredients = formData.ingredients.filter(ing => ing.trim() !== "");
 
     const finalData = {
       ...formData,

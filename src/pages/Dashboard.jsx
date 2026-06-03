@@ -1,20 +1,16 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "../context/RecipeContext";
 import Button from "../components/ui/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(RecipeContext);
-  const recipes = state.recipes;
-  const navigate = useNavigate();
 
   const filteredRecipes = state.recipes.filter(recipe =>
     recipe.name.toLowerCase().includes(state.searchQuery.toLowerCase())
-  )
+  );
 
-  const sortedRecipes = [...filteredRecipes].sort((a,b) => b.id - a.id)
-
-  console.log("Recipes in Dashboard:", recipes);
+  const sortedRecipes = [...filteredRecipes].sort((a, b) => b.id - a.id);
 
   return (
     <>
@@ -22,13 +18,10 @@ const Dashboard = () => {
         <div className="cursor-default">
           <h2 className="font-bold text-[3.5rem]">Your Kitchen</h2>
           <p className="text-lg text-gray-600">
-            Curate, curate and plate your culnary adventures
+            Curate, curate and plate your culinary adventures
           </p>
         </div>
-        <Link
-          to="/add"
-          onClick={() => dispatch({ type: "SET_SELECTED", payload: null })}
-        >
+        <Link to="/add" onClick={() => dispatch({ type: "SET_SELECTED", payload: null })}>
           <Button className="px-6">
             <img src="./plus.svg" alt="" />
             Add Recipe
@@ -37,32 +30,31 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-10 px-10">
-  {sortedRecipes.length === 0 ? (
-    <div className="flex flex-col items-center justify-center py-20">
-      <p className="text-gray-400 text-xl">No recipes found matching <span className="text-blue-500">{state.searchQuery}</span></p>
-      <button 
-        onClick={() => dispatch({ type: 'SET_SEARCH', payload: '' })}
-        className="text-[#e63946] mt-2 underline cursor-pointer"
-      >
-        <img
-        className="h-15"
-        src="./clear.svg" alt="Clear Search" />
-      </button>
-    </div>
-  ) : (
+        {sortedRecipes.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <p className="text-gray-400 text-xl">
+              {state.recipes.length === 0 ? "Your kitchen is empty. Add your first recipe!" : `No recipes found matching "${state.searchQuery}"`}
+            </p>
+            {state.searchQuery && (
+              <button 
+                onClick={() => dispatch({ type: 'SET_SEARCH', payload: '' })}
+                className="text-[#e63946] mt-2 underline cursor-pointer"
+              >
+                Clear Search
+              </button>
+            )}
+          </div>
+        ) : (
           <div className="flex flex-col gap-10">
             {(() => {
-              const sorted = [...state.recipes].sort((a, b) => b.id - a.id);
               const latest = sortedRecipes[0];
-              const others = sorted.slice(1);
+              const others = sortedRecipes.slice(1);
 
               return (
                 <>
                   <div
                     className="relative w-full h-100 overflow-hidden rounded-t-3xl shadow-xl group cursor-pointer"
-                    onClick={() =>
-                      dispatch({ type: "SET_SELECTED", payload: latest })
-                    }
+                    onClick={() => dispatch({ type: "SET_SELECTED", payload: latest })}
                   >
                     <img
                       src={latest.imageLink || "./cover-template.jpg"}
@@ -74,22 +66,13 @@ const Dashboard = () => {
                       className="absolute top-6 right-6 z-10 p-3 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/40 transition-colors"
                       onClick={(e) => {
                         e.stopPropagation();
-                        dispatch({
-                          type: "TOGGLE_FAVORITE",
-                          payload: latest.id,
-                        });
+                        dispatch({ type: "TOGGLE_FAVORITE", payload: latest.id });
                       }}
                     >
-                      <span className="text-xl">
-                        {latest.isFavorite ? (
-                          <img className="w-5" src="./liked.png" />
-                        ) : (
-                          <img className="w-5" src="./like.png" />
-                        )}
-                      </span>
+                      <img className="w-5" src={latest.isFavorite ? "./liked.png" : "./like.png"} alt="favorite toggle" />
                     </button>
 
-                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
                       <span className="inline-block w-fit px-3 py-1 mb-2 text-[10px] font-bold tracking-wider text-green-400 uppercase bg-green-900/80 rounded-full">
                         Recently Added
                       </span>
@@ -97,12 +80,9 @@ const Dashboard = () => {
                         {latest.name}
                       </h2>
                       <div className="flex items-center gap-4 text-sm font-medium text-gray-200">
-                        <span>{latest.prepTime} mins</span>
+                        <span>{latest.prepTime || 0} mins</span>
                         <span>•</span>
-                        <span>{latest.servings} people</span>
-                        <span className="ml-auto text-green-400 font-bold uppercase tracking-tighter text-xs">
-                          Chef's Choice
-                        </span>
+                        <span>{latest.servings || 0} people</span>
                       </div>
                     </div>
                   </div>
@@ -112,9 +92,7 @@ const Dashboard = () => {
                       <div
                         key={recipe.id}
                         className="bg-white rounded-3xl cursor-pointer w-74 shadow-sm hover:shadow-md transition-shadow"
-                        onClick={() =>
-                          dispatch({ type: "SET_SELECTED", payload: recipe })
-                        }
+                        onClick={() => dispatch({ type: "SET_SELECTED", payload: recipe })}
                       >
                         <img
                           className="rounded-t-2xl w-full h-48 object-cover"
@@ -124,24 +102,17 @@ const Dashboard = () => {
                         <h3 className="text-xl font-semibold mt-3 px-4 truncate">
                           {recipe.name}
                         </h3>
-                        <p className="text-gray-600 px-4">
-                          {recipe.prepTime} mins • {recipe.servings} people
+                        <p className="text-gray-600 px-4 text-sm">
+                          {recipe.prepTime || 0} mins • {recipe.servings || 0} people
                         </p>
                         <button
-                          className={`mt-3  px-4 pb-4 cursor-pointer ${recipe.isFavorite ? "text-red-500" : "text-gray-400"}`}
+                          className="mt-3 px-4 pb-4 cursor-pointer"
                           onClick={(e) => {
                             e.stopPropagation();
-                            dispatch({
-                              type: "TOGGLE_FAVORITE",
-                              payload: recipe.id,
-                            });
+                            dispatch({ type: "TOGGLE_FAVORITE", payload: recipe.id });
                           }}
                         >
-                          {recipe.isFavorite ? (
-                            <img className="w-5" src="./liked.png" />
-                          ) : (
-                            <img className="w-5" src="./like.png" />
-                          )}
+                          <img className="w-5" src={recipe.isFavorite ? "./liked.png" : "./like.png"} alt="favorite toggle" />
                         </button>
                       </div>
                     ))}

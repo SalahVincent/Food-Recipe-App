@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "../../context/RecipeContext";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
     const {state, dispatch} = useContext(RecipeContext)
-    const navigate = useNavigate()
 
   return (
     <>
@@ -20,10 +18,10 @@ const Navbar = () => {
         <nav>
           <ul className="flex flex-row gap-3">
             <li>
-              <a href="/">Dashboard</a>
+              <Link to={'/'}>Dashboard</Link>
             </li>
             <li>
-              <a href="/favorites">Favorites</a>
+              <Link to={'/favorites'}>Favorites</Link>
             </li>
           </ul>
         </nav>
