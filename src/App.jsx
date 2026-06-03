@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
         <Navbar />
-        {location.pathname === '/' && <Sidebar />}
+        {location.pathname === '/' || '/favorites' && <Sidebar />}
           <Routes>
               <Route path='/' element={<Dashboard />} />
               <Route path='/favorites' element={<Favorites />} />
