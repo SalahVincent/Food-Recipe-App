@@ -10,11 +10,12 @@ import Sidebar from './components/layout/Sidebar'
 
 const App = () => {
   const location = useLocation()
+  const showSidebarPaths = ['/', '/favorites']
 
   return (
     <>
         <Navbar />
-        {location.pathname === '/' || '/favorites' && <Sidebar />}
+        {showSidebarPaths.includes(location.pathname) && <Sidebar />}
           <Routes>
               <Route path='/' element={<Dashboard />} />
               <Route path='/favorites' element={<Favorites />} />
