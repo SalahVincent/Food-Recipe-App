@@ -3,6 +3,7 @@ import Navbar from "./parts/Navbar";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./parts/Sidebar";
+import BottomNavbar from "./parts/BottomNavbar";
 
 const AppLayout = () => {
   const isAuthenticated = true;
@@ -20,6 +21,7 @@ const AppLayout = () => {
       <main>
         <Outlet context={{setIsSidebarOpen}}/>
       </main>
+      <BottomNavbar />
     </div>
   );
 };
