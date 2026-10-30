@@ -21,7 +21,6 @@ const AppLayout = () => {
       <main>
         <Outlet context={{setIsSidebarOpen}}/>
       </main>
-      <BottomNavbar />
     </div>
   );
 };

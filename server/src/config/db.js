@@ -10,6 +10,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
         timestamps: true,
         underscored: true,
     },
+    dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false // Required for self-signed certificates on cloud hosts like Render
+    }
+  }
 });
 
 const connectDB = async () => {
